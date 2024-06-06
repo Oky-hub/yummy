@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MenuMenuan</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/bitelitle.png" rel="icon">
+  <link href="assets/img/applebite.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Yummy
+  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>MenuMenuan<span>.</span></h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Enjoy Your Meal<br>Delicious Food</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Take it all menu what do you want it!!!</p>
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <a href="#book-a-table" class="btn-book-a-table">Make an Order</a>
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="assets/img/herogaco.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= Book A Table Section ======= -->
+    <section id="book-a-table" class="book-a-table">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Book A Table</h2>
+          <p>Book <span>Your Stay</span> With Us</p>
+        </div>
+
+        <div class="row g-0">
+
+          <div class="col-lg-12 d-flex align-items-center reservation-form-bg">
+            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+              <div class="row gy-2">
+                <div class="col-lg-6 col-md-6">
+                  <input type="number" name="number" class="form-control" id="numPeople" placeholder="Jumlah Orang" min="1" value="1">
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 mb-3">
+                  <div class="text-center">
+                    <button onclick="generateForms()" type="submit">Add Person</button>
+                  </div>
+                </div>
+
+                <div id="orderForms"></div>
+                
+                <div class="text-center">
+                  <button onclick="calculateTotal()" type="submit">Calculate</button>
+                </div>
+
+                <h2>Hasil</h2>
+                <p id="result"></p>
+
+                <!-- <div class="col-lg-4 col-md-6">
+                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                  <div class="validate"></div>
+                </div>-->
+              </div> 
+            </form>
+          </div><!-- End Reservation Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Book A Table Section -->
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>gallery</h2>
+          <p>Check <span>Our Gallery</span></p>
+        </div>
+
+        <div class="gallery-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gaco1.jpg"><img src="assets/img/gallery/gaco1.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gaco2.jpg"><img src="assets/img/gallery/gaco2.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gaco3.jpg"><img src="assets/img/gallery/gaco3.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gaco4.jpg"><img src="assets/img/gallery/gaco4.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gaco5.jpg"><img src="assets/img/gallery/gaco5.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gaco6.jpg"><img src="assets/img/gallery/gaco6.jpg" class="img-fluid" alt=""></a></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Yummy</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+        Designed by <a href="#">BITE Production</a>
+      </div>
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    const menuItems = {
+        Mie: [
+            { name: "Mie Suit", price: 11000 },
+            { name: "Mie Hompimpa L1", price: 11000 },
+            { name: "Mie Hompimpa L2", price: 11000 },
+            { name: "Mie Hompimpa L3", price: 11000 },
+            { name: "Mie Hompimpa L4", price: 11000 },
+            { name: "Mie Hompimpa L6", price: 12000 },
+            { name: "Mie Hompimpa L7", price: 12000 },
+            { name: "Mie Hompimpa L8", price: 12000 },
+            { name: "Mie Gacoan L0", price: 11000 },
+            { name: "Mie Gacoan L1", price: 11000 },
+            { name: "Mie Gacoan L2", price: 11000 },
+            { name: "Mie Gacoan L3", price: 11000 },
+            { name: "Mie Gacoan L4", price: 11000 },
+            { name: "Mie Gacoan L6", price: 12000 },
+            { name: "Mie Gacoan L7", price: 12000 },
+            { name: "Mie Gacoan L8", price: 12000 }
+        ],
+        Dimsum: [
+            { name: "Lumpia Udang", price: 10000 },
+            { name: "Siomay", price: 10000 },
+            { name: "Udang Keju", price: 10000 },
+            { name: "Udang Rambutan", price: 10000 },
+            { name: "Pangsit Goreng", price: 11000 }
+        ],
+        Beverage: [
+            { name: "Es Gobak Sodor", price: 10000 },
+            { name: "Es Petak Umpet", price: 10000 },
+            { name: "Es Sluku Batok", price: 7000 },
+            { name: "Es Teklek", price: 6000 },
+            { name: "Es Teh", price: 4000 },
+            { name: "Orange", price: 6000 },
+            { name: "Lemon Tea", price: 7000 },
+            { name: "Air Mineral", price: 4000 },
+            { name: "Milo", price: 9000 },
+            { name: "Vanilla Latte", price: 9000 },
+            { name: "Teh Tarik", price: 7000 },
+            { name: "Thai Tea Ori", price: 9000 },
+            { name: "Green Thai Tea", price: 9000 },
+            { name: "Es Coklat", price: 9000 }
+        ]
+    };
+
+    function generateForms() {
+        const numPeople = document.getElementById('numPeople').value;
+        const orderForms = document.getElementById('orderForms');
+        orderForms.innerHTML = '';
+
+        for (let i = 1; i <= numPeople; i++) {
+            const div = document.createElement('div');
+            div.className = 'order';
+            div.id = `order${i}`;
+            div.innerHTML = `
+                <h3>Pesanan Orang ${i}</h3><br>
+                <input type="text" class="form-control" id="name${i}" placeholder="Nama"><br>
+                <div id="menuList${i}">
+                </div><br>
+                <div id="selectedMenu${i}" class="selectedMenu"></div>
+            `;
+            orderForms.appendChild(div);
+            addMenu(i);
+        }
+    }
+
+    function addMenu(orderId) {
+        const menuList = document.getElementById(`menuList${orderId}`);
+        const menuCount = menuList.querySelectorAll('.menuItem').length + 1;
+
+        const div = document.createElement('div');
+        div.className = 'menuItem';
+        div.innerHTML = `
+        <table class="table">
+            <tr>
+                <td>
+                    <label for="category${orderId}-${menuCount}">Kategori: </label>
+                    <select class="form-control" id="category${orderId}-${menuCount}" onchange="updateMenu(${orderId}, ${menuCount})">
+                        <option value="Mie">Mie</option>
+                        <option value="Dimsum">Dimsum</option>
+                        <option value="Beverage">Beverage</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="menu${orderId}-${menuCount}">Pilih Menu: </label>
+                    <select class="form-control" id="menu${orderId}-${menuCount}" onchange="updatePrice(${orderId}, ${menuCount})"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="quantity${orderId}-${menuCount}">Jumlah: </label>
+                    <input class="form-control" type="number" id="quantity${orderId}-${menuCount}" min="1" value="1" onchange="updatePrice(${orderId}, ${menuCount})">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-success" onclick="addSelectedMenu(${orderId}, ${menuCount})">Tambahkan ke Pesanan</button>
+                    <span id="price${orderId}-${menuCount}">Rp 0</span>
+                </td>
+            </tr>
+        </table>
+    `;
+        menuList.insertBefore(div, menuList.lastChild);
+        updateMenu(orderId, menuCount);
+    }
+
+    function updateMenu(orderId, menuCount) {
+        const categorySelect = document.getElementById(`category${orderId}-${menuCount}`);
+        const menuSelect = document.getElementById(`menu${orderId}-${menuCount}`);
+        const category = categorySelect.value;
+        
+        menuSelect.innerHTML = menuItems[category].map((item, index) => `<option value="${index}">${item.name} (Rp ${item.price.toLocaleString()})</option>`).join('');
+        updatePrice(orderId, menuCount);
+    }
+
+    function updatePrice(orderId, menuCount) {
+        const categorySelect = document.getElementById(`category${orderId}-${menuCount}`);
+        const menuSelect = document.getElementById(`menu${orderId}-${menuCount}`);
+        const quantity = document.getElementById(`quantity${orderId}-${menuCount}`).value;
+        const price = menuItems[categorySelect.value][menuSelect.value].price * quantity;
+        document.getElementById(`price${orderId}-${menuCount}`).innerText = `Rp ${price.toLocaleString()}`;
+    }
+
+    function addSelectedMenu(orderId, menuCount) {
+        const categorySelect = document.getElementById(`category${orderId}-${menuCount}`);
+        const menuSelect = document.getElementById(`menu${orderId}-${menuCount}`);
+        const quantity = document.getElementById(`quantity${orderId}-${menuCount}`).value;
+        const selectedMenuList = document.getElementById(`selectedMenu${orderId}`);
+
+        if (quantity > 0) {
+            const price = menuItems[categorySelect.value][menuSelect.value].price * quantity;
+            const selectedMenu = document.createElement('p');
+            selectedMenu.innerText = `${quantity} x ${menuItems[categorySelect.value][menuSelect.value].name} (Rp ${price.toLocaleString()})`;
+            selectedMenuList.appendChild(selectedMenu);
+        }
+    }
+
+    function calculateTotal() {
+        const numPeople = document.getElementById('numPeople').value;
+        let resultHTML = '';
+
+        let grandTotal = 0;
+        const overallMenuCounts = {
+            Mie: {},
+            Dimsum: {},
+            Beverage: {}
+        };
+
+        for (let i = 1; i <= numPeople; i++) {
+            const name = document.getElementById(`name${i}`).value || `Orang ${i}`;
+            let total = 0;
+            const selectedMenuList = document.getElementById(`selectedMenu${i}`).querySelectorAll('p');
+
+            selectedMenuList.forEach(item => {
+                const parts = item.innerText.split(' x ');
+                const quantity = parseInt(parts[0]);
+                const nameAndPrice = parts[1].split(' (Rp ');
+                const menuName = nameAndPrice[0];
+                const price = parseInt(nameAndPrice[1].replace(')', '').replace(/\./g, ''));
+
+                total += price;
+
+                for (const category in menuItems) {
+                    const menuItem = menuItems[category].find(menu => menu.name === menuName);
+                    if (menuItem) {
+                        if (overallMenuCounts[category][menuName]) {
+                            overallMenuCounts[category][menuName] += quantity;
+                        } else {
+                            overallMenuCounts[category][menuName] = quantity;
+                        }
+                    }
+                }
+            });
+
+            const tax = total * 0.1;
+            const totalWithTax = total + tax;
+            
+            resultHTML += `<p>Total Pesanan ${name} (termasuk pajak 10%): Rp ${totalWithTax.toLocaleString()} (Pajak: Rp ${tax.toLocaleString()})</p>`;
+            grandTotal += totalWithTax;
+        }
+
+        resultHTML += `<p>Total Keseluruhan (termasuk pajak): Rp ${grandTotal.toLocaleString()}</p>`;
+
+        resultHTML += `<h3>Detail Keseluruhan Menu</h3>`;
+        for (const category in overallMenuCounts) {
+            resultHTML += `<h4>${category}</h4>`;
+            for (const menu in overallMenuCounts[category]) {
+                resultHTML += `<p>${menu}: ${overallMenuCounts[category][menu]}</p>`;
+            }
+        }
+
+        document.getElementById('result').innerHTML = resultHTML;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu Menuan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .order {
+            margin-bottom: 20px;
+        }
+        .order h3 {
+            margin-bottom: 10px;
+        }
+        .total {
+            font-weight: bold;
+        }
+    </style>
+
+    </head>
+  <body>
+    <h1>Menu Menuan Gacoan</h1>
+    
+    <label for="numPeople">Jumlah Orang: </label>
+    <input type="number" id="numPeople" min="1" value="1">
+    <button onclick="generateForms()">Buat Form Pemesanan</button>
+
+    <div id="orderForms"></div>
+    
+    <button onclick="calculateTotal()">Hitung Total</button>
+
+    <h2>Hasil</h2>
+    <p id="result"></p>
+
+    <script>
+        const menuItems = {
+            Mie: [
+                { name: "Mie Suit", price: 11000 },
+                { name: "Mie Hompimpa L1", price: 11000 },
+                { name: "Mie Hompimpa L2", price: 11000 },
+                { name: "Mie Hompimpa L3", price: 11000 },
+                { name: "Mie Hompimpa L4", price: 11000 },
+                { name: "Mie Hompimpa L6", price: 12000 },
+                { name: "Mie Hompimpa L7", price: 12000 },
+                { name: "Mie Hompimpa L8", price: 12000 },
+                { name: "Mie Gacoan L0", price: 11000 },
+                { name: "Mie Gacoan L1", price: 11000 },
+                { name: "Mie Gacoan L2", price: 11000 },
+                { name: "Mie Gacoan L3", price: 11000 },
+                { name: "Mie Gacoan L4", price: 11000 },
+                { name: "Mie Gacoan L6", price: 12000 },
+                { name: "Mie Gacoan L7", price: 12000 },
+                { name: "Mie Gacoan L8", price: 12000 }
+            ],
+            Dimsum: [
+                { name: "Lumpia Udang", price: 10000 },
+                { name: "Siomay", price: 10000 },
+                { name: "Udang Keju", price: 10000 },
+                { name: "Udang Rambutan", price: 10000 },
+                { name: "Pangsit Goreng", price: 11000 }
+            ],
+            Beverage: [
+                { name: "Es Gobak Sodor", price: 10000 },
+                { name: "Es Petak Umpet", price: 10000 },
+                { name: "Es Sluku Batok", price: 7000 },
+                { name: "Es Teklek", price: 6000 },
+                { name: "Es Teh", price: 4000 },
+                { name: "Orange", price: 6000 },
+                { name: "Lemon Tea", price: 7000 },
+                { name: "Air Mineral", price: 4000 },
+                { name: "Milo", price: 9000 },
+                { name: "Vanilla Latte", price: 9000 },
+                { name: "Teh Tarik", price: 7000 },
+                { name: "Thai Tea Ori", price: 9000 },
+                { name: "Green Thai Tea", price: 9000 },
+                { name: "Es Coklat", price: 9000 }
+            ]
+        };
+
+        function generateForms() {
+            const numPeople = document.getElementById('numPeople').value;
+            const orderForms = document.getElementById('orderForms');
+            orderForms.innerHTML = '';
+
+            for (let i = 1; i <= numPeople; i++) {
+                const div = document.createElement('div');
+                div.className = 'order';
+                div.id = `order${i}`;
+                div.innerHTML = `
+                    <h3>Pesanan Orang ${i}</h3>
+                    <label for="name${i}">Nama: </label>
+                    <input type="text" id="name${i}" placeholder="Nama"><br>
+                    <div id="menuList${i}">
+                        <!-- <button type="button" onclick="addMenu(${i})">Tambah Menu</button><br> -->
+                    </div>
+                    <div id="selectedMenu${i}" class="selectedMenu"></div>
+                `;
+                orderForms.appendChild(div);
+                addMenu(i);
+            }
+        }
+
+        function addMenu(orderId) {
+            const menuList = document.getElementById(`menuList${orderId}`);
+            const menuCount = menuList.querySelectorAll('.menuItem').length + 1;
+
+            const div = document.createElement('div');
+            div.className = 'menuItem';
+            div.innerHTML = `
+                <label for="category${orderId}-${menuCount}">Kategori: </label>
+                <select id="category${orderId}-${menuCount}" onchange="updateMenu(${orderId}, ${menuCount})">
+                    <option value="Mie">Mie</option>
+                    <option value="Dimsum">Dimsum</option>
+                    <option value="Beverage">Beverage</option>
+                </select>
+                <label for="menu${orderId}-${menuCount}">Pilih Menu: </label>
+                <select id="menu${orderId}-${menuCount}" onchange="updatePrice(${orderId}, ${menuCount})"></select>
+                <label for="quantity${orderId}-${menuCount}">Jumlah: </label>
+                <input type="number" id="quantity${orderId}-${menuCount}" min="0" value="0" onchange="updatePrice(${orderId}, ${menuCount})"><br>
+                <button type="button" onclick="addSelectedMenu(${orderId}, ${menuCount})">Tambahkan ke Pesanan</button>
+                <span id="price${orderId}-${menuCount}">Rp 0</span>
+            `;
+            menuList.insertBefore(div, menuList.lastChild);
+            updateMenu(orderId, menuCount);
+        }
+
+        function updateMenu(orderId, menuCount) {
+            const categorySelect = document.getElementById(`category${orderId}-${menuCount}`);
+            const menuSelect = document.getElementById(`menu${orderId}-${menuCount}`);
+            const category = categorySelect.value;
+            
+            menuSelect.innerHTML = menuItems[category].map((item, index) => `<option value="${index}">${item.name} (Rp ${item.price.toLocaleString()})</option>`).join('');
+            updatePrice(orderId, menuCount);
+        }
+
+        function updatePrice(orderId, menuCount) {
+            const categorySelect = document.getElementById(`category${orderId}-${menuCount}`);
+            const menuSelect = document.getElementById(`menu${orderId}-${menuCount}`);
+            const quantity = document.getElementById(`quantity${orderId}-${menuCount}`).value;
+            const price = menuItems[categorySelect.value][menuSelect.value].price * quantity;
+            document.getElementById(`price${orderId}-${menuCount}`).innerText = `Rp ${price.toLocaleString()}`;
+        }
+
+        function addSelectedMenu(orderId, menuCount) {
+            const categorySelect = document.getElementById(`category${orderId}-${menuCount}`);
+            const menuSelect = document.getElementById(`menu${orderId}-${menuCount}`);
+            const quantity = document.getElementById(`quantity${orderId}-${menuCount}`).value;
+            const selectedMenuList = document.getElementById(`selectedMenu${orderId}`);
+
+            if (quantity > 0) {
+                const price = menuItems[categorySelect.value][menuSelect.value].price * quantity;
+                const selectedMenu = document.createElement('p');
+                selectedMenu.innerText = `${quantity} x ${menuItems[categorySelect.value][menuSelect.value].name} (Rp ${price.toLocaleString()})`;
+                selectedMenuList.appendChild(selectedMenu);
+            }
+        }
+
+        function calculateTotal() {
+            const numPeople = document.getElementById('numPeople').value;
+            let resultHTML = '';
+
+            let grandTotal = 0;
+            const overallMenuCounts = {
+                Mie: {},
+                Dimsum: {},
+                Beverage: {}
+            };
+
+            for (let i = 1; i <= numPeople; i++) {
+                const name = document.getElementById(`name${i}`).value || `Orang ${i}`;
+                let total = 0;
+                const selectedMenuList = document.getElementById(`selectedMenu${i}`).querySelectorAll('p');
+
+                selectedMenuList.forEach(item => {
+                    const parts = item.innerText.split(' x ');
+                    const quantity = parseInt(parts[0]);
+                    const nameAndPrice = parts[1].split(' (Rp ');
+                    const menuName = nameAndPrice[0];
+                    const price = parseInt(nameAndPrice[1].replace(')', '').replace(/\./g, ''));
+
+                    total += price;
+
+                    for (const category in menuItems) {
+                        const menuItem = menuItems[category].find(menu => menu.name === menuName);
+                        if (menuItem) {
+                            if (overallMenuCounts[category][menuName]) {
+                                overallMenuCounts[category][menuName] += quantity;
+                            } else {
+                                overallMenuCounts[category][menuName] = quantity;
+                            }
+                        }
+                    }
+                });
+
+                const tax = total * 0.1;
+                const totalWithTax = total + tax;
+                
+                resultHTML += `<p>Total Pesanan ${name} (termasuk pajak 10%): Rp ${totalWithTax.toLocaleString()} (Pajak: Rp ${tax.toLocaleString()})</p>`;
+                grandTotal += totalWithTax;
+            }
+
+            resultHTML += `<p>Total Keseluruhan (termasuk pajak): Rp ${grandTotal.toLocaleString()}</p>`;
+
+            resultHTML += `<h3>Detail Keseluruhan Menu</h3>`;
+            for (const category in overallMenuCounts) {
+                resultHTML += `<h4>${category}</h4>`;
+                for (const menu in overallMenuCounts[category]) {
+                    resultHTML += `<p>${menu}: ${overallMenuCounts[category][menu]}</p>`;
+                }
+            }
+
+            document.getElementById('result').innerHTML = resultHTML;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
